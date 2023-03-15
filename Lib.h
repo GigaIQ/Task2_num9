@@ -2,8 +2,8 @@
 // Created by Артём on 13.03.2023.
 //
 
-#ifndef TASK2_2_LIB_H
-#define TASK2_2_LIB_H
+#ifndef TASK2_NUM9_LIB_H
+#define TASK2_NUM9_LIB_H
 
 #include "Thread.h"
 #include "Process.h"
@@ -12,7 +12,7 @@
 class Lib {
 private:
     int id;
-    int whoseThread = NULL;
+    int whoseThread = 0;
     int memoryUsage;
 
 public:
@@ -32,4 +32,4 @@ public:
 };
 
 
-#endif //TASK2_2_LIB_H
+#endif //TASK2_NUM9_LIB_H

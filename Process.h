@@ -2,8 +2,8 @@
 // Created by Артём on 12.03.2023.
 //
 
-#ifndef TASK2_2_PROCESS_H
-#define TASK2_2_PROCESS_H
+#ifndef TASK2_NUM9_PROCESS_H
+#define TASK2_NUM9_PROCESS_H
 
 #include <iostream>
 #include <vector>
@@ -16,7 +16,7 @@ class Thread;
 class Process {
 private:
     int id;
-    int whoseProcess;
+    int whoseProcess = 0;
     int memoryUsage = 0;
     std::vector<Thread> connectedThreads;
 
@@ -27,10 +27,32 @@ public:
         return connectedThreads;
     }
 
+    void findLibById(int neededLibId) {
+        std::vector<Lib> neededLibs;
+        std::vector<int> inWhatThreads;
+
+        for (int i = 0; i < connectedThreads.size(); ++i) {
+            for (int j = 0; j < connectedThreads[i].getConnectedLibs().size(); ++j) {
+                if (connectedThreads[i].getConnectedLibs()[j].getLibId() == neededLibId) {
+                    neededLibs.push_back(connectedThreads[i].getConnectedLibs()[j]);
+                    inWhatThreads.push_back(connectedThreads[i].getId());
+                }
+            }
+        }
+
+        if (neededLibs.size() == 0) {
+            std::cout << "Lib with this ID not found" << std::endl;
+        }
+
+        for (int i = 0; i < inWhatThreads.size(); ++i) {
+        std::cout << "Lib with ID " << neededLibId << " is in thread with ID " << inWhatThreads[i] << std::endl;
+        }
+    }
+
     void getProcessInfo() {
         std::cout << "Process info:" << std::endl;
         std::cout << "Id - " << id << std::endl;
-//        std::cout << "Memory usage - " << memoryUsage << std::endl;
+
         int threadsMemoryUsage = 0;
         for (int i = 0; i < connectedThreads.size(); ++i) {
             threadsMemoryUsage += connectedThreads[i].getMemoryUsage();
@@ -46,7 +68,6 @@ public:
 
     void addThread(Thread thread) {
         connectedThreads.push_back(thread);
-//        thread.addWhoseProcess(id);
     }
 
     void addLib(Thread toWhatThread, Lib whatLib) {
@@ -58,7 +79,6 @@ public:
         tempThread.addLib(whatLib);
         deleteThreadFomProcess(toWhatThread.getId());
         addThread(tempThread);
-//        toWhatThread.addLib(whatLib);
     }
 
     void deleteLib(Thread fromWhatThread, int libIdToDelete) {
@@ -82,10 +102,6 @@ public:
         } else {
             std::cout << "Lib with this ID does not exist, nothing to delete" << std::endl;
         }
-    }
-
-    void deleteProcess() {
-
     }
 
     void deleteThreadFomProcess(int threadId) {
@@ -112,4 +128,4 @@ public:
 };
 
 
-#endif //TASK2_2_PROCESS_H
+#endif //TASK2_NUM9_PROCESS_H

@@ -2,8 +2,8 @@
 // Created by Артём on 12.03.2023.
 //
 
-#ifndef TASK2_2_THREAD_H
-#define TASK2_2_THREAD_H
+#ifndef TASK2_NUM9_THREAD_H
+#define TASK2_NUM9_THREAD_H
 
 #include <iostream>
 #include <vector>
@@ -14,7 +14,7 @@ class Thread {
 private:
     int id;
     int memoryUsage;
-    int whoseProcess = NULL;
+    int whoseProcess = 0;
     std::vector<Lib> connectedLibs;
 
 public:
@@ -91,4 +91,4 @@ public:
 
 
 
-#endif //TASK2_2_THREAD_H
+#endif //TASK2_NUM9_THREAD_H
