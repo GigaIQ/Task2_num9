@@ -49,6 +49,10 @@ public:
         }
     }
 
+    int getId() {
+        return id;
+    }
+
     void getProcessInfo() {
         std::cout << "Process info:" << std::endl;
         std::cout << "Id - " << id << std::endl;
